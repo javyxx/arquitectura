@@ -70,6 +70,9 @@ Se puede adaptar la nomeclatura a cada caso, ej:
 Para autenticarse tan solo hay que hacer login sobre la url http://localhost:8080/api/v1/login con el body {"demo", "abcd123"}
 esto nos devuelve un head "X-AUTH-TOKEN" con el accessToken para poder hacer invocaciones en todos los servicios del proyecto.
 
+Para configurar el acceso a la base de datos que se usa para validar los usuarios se hace uso del archivo arquitectura.yml en donde
+se guardan todas las propiedades de configuración de la arquitectura común de microservicios.
+
 ### Todo's
 - Proyecto multimodulo con Gradle
 - Integrar Spring Cloud
