@@ -1,4 +1,4 @@
-# Microservicios con Spring Boot
+# Microservicios con Spring Boot (1/4)
 ### Introdución a Spring boot:
 Spring boot es una plataforma que pretende simplificar el desarrollo y para ello realiza auto-configuración (convención en vez de configuración) de los componente. Usa Spring JavaConfig y se puede configurar toda la plataforma sin necesidad de usar XML.   
 
@@ -72,9 +72,8 @@ esto nos devuelve un head "X-AUTH-TOKEN" con el accessToken para poder hacer inv
 
 ### Todo's
 - Proyecto multimodulo con Gradle
-- Integrar Spring Config
 - Integrar Spring Cloud
-- Integrar DockerCompose
+- Automatización con DockerCompose
 
 ### Version
 1.0.0
