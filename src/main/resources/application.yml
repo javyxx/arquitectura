@@ -1,0 +1,45 @@
+server:
+   port: 8080
+   tomcat:
+      uri-encoding: UTF-8   
+security:
+   basic:
+      enabled: false
+spring.jackson.date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+spring.mvc.locale: en_US
+spring.jackson.serialization.WRITE_EMPTY_JSON_ARRAYS: true 
+spring.jackson.serialization.WRITE_NULL_MAP_VALUES: true
+spring:
+   data:
+      mongodb:
+         host: 127.0.0.1
+         port: 27017
+         database: arquitecture
+         username: arquitectureapp
+         password: arquitectureapp
+   datasource: 
+      driverClassName: com.mongodb.Mongo
+   rabbitmq:
+      host: docker-1
+      port: 5672
+logging:
+   path: log
+---
+spring:
+   profiles: test
+   data:
+      mongodb:
+         host: 127.0.0.1
+         port: 27017
+         database: arquitecture
+         username: arquitectureapp
+         password: arquitectureapp
+   datasource: 
+      driverClassName: com.mongodb.Mongo
+   rabbitmq:
+      host: docker-1
+      port: 5672
+logging:
+   path: log
+
+
