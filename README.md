@@ -41,7 +41,7 @@ Esto facilita el desarrollo evitando la repetición de código.
 
 
 ```sh
-$ git clone https://git.paradigmadigital.com/git/arquitectura.git arquitecture
+$ git clone https://git.paradigmadigital.com/git/ArquitecturaMicroServiciosSprinBoot.git arquitecture
 $ cd arquitecture
 $ gradle bootRun
 ```
