@@ -70,6 +70,7 @@ Se puede adaptar la nomeclatura a cada caso, ej:
 Para autenticarse tan solo hay que hacer login sobre la url http://localhost:8080/api/v1/login con el body {"demo", "abcd123"}
 esto nos devuelve un head "X-AUTH-TOKEN" con el accessToken para poder hacer invocaciones en todos los servicios del proyecto.
 
+
 ### Projectos multimodulo 
 En este proyecto multi-modulo (git url) se dispondra de 2 microservicios básicos los cuales no comparten código ni nada entre ellos , la razón es que se desea evitar que haya una dependencia directa entre ellos , queremos que esten complementamente desacoplados. 
 Se ha creado un proyecto para compartir código que es importado por ambos proyectos en el que se puede compartir clases si es necesario la idea es usarlo para compartir interfaces o clases de utilidad pero siempre evitando el acoplamiento de la implementación de cada servicio.
@@ -91,6 +92,9 @@ La única consideración de seguridad a tener en cuenta es que estos servicios c
 Para la comunicación de eventos entre los distintos microservicios se hace uso de un bus de eventos y del patrón comander para reacionar a estos eventos lo que permite ejecutar acciones de forma asincrona . 
 Si por ejemplo tenemos replicada la información de usuario dentro del producto y esta información cambia podemos  avisar de forma asincrona a los demas servicios para que actualicen la información que tienen replicada. 
 También nos permite realizar operaciones de borrado como por ejemplo borrar todos los productos pertenecientes a un usuario una vez ese usuario ha sido borrado. 
+=======
+Para configurar el acceso a la base de datos que se usa para validar los usuarios se hace uso del archivo arquitectura.yml en donde
+se guardan todas las propiedades de configuración de la arquitectura común de microservicios.
 
 ### Todo's
 - Proyecto multimodulo con Gradle
