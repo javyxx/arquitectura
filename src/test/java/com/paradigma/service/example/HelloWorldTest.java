@@ -29,7 +29,7 @@ public class HelloWorldTest {
 
 	@Test
 	public void loginTest() {
-		String token = login("demo", "abcd123");
+		String token = login("Javier", "abcd123");
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
 		List<String> tokenList = new ArrayList<>();
 		tokenList.add(token);
@@ -43,7 +43,7 @@ public class HelloWorldTest {
 
 	@Test
 	public void listUsersTest() {
-		String token = login("demo", "abcd123");
+		String token = login("Javier", "abcd123");
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
 		List<String> tokenList = new ArrayList<>();
 		tokenList.add(token);
@@ -58,7 +58,7 @@ public class HelloWorldTest {
 
 	@Test
 	public void listOneUserTest() {
-		String token = login("demo", "abcd123");
+		String token = login("Javier", "abcd123");
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
 		List<String> tokenList = new ArrayList<>();
 		tokenList.add(token);

@@ -19,7 +19,7 @@ public interface AdvancedSearchRepositoryHelper {
 	String SIZE_PARAM = "size";
 	String SORT_PARAM = "sort";
 	String FIELDS_PARAM = "fields";
-	String SEARCH_PARAM = "search";
+	String FILTER_PARAM = "filter";
 	String EQUALS_PARAM = ":";
 	String NEGATION_PARAM = "!";
 	String GREATER_THAN_PARAM = ">";
@@ -43,7 +43,7 @@ public interface AdvancedSearchRepositoryHelper {
 
 	List<String> API_FILTERABLE = Arrays.asList(new String[] { AdvancedSearchRepositoryHelper.PAGE_PARAM,
 			AdvancedSearchRepositoryHelper.SIZE_PARAM, AdvancedSearchRepositoryHelper.SORT_PARAM,
-			AdvancedSearchRepositoryHelper.SEARCH_PARAM, AdvancedSearchRepositoryHelper.FIELDS_PARAM });
+			AdvancedSearchRepositoryHelper.FILTER_PARAM, AdvancedSearchRepositoryHelper.FIELDS_PARAM });
 
 	<T> Page<T> findAllByParams(Map<String, Object> parameters, Class<T> entityClass);
 

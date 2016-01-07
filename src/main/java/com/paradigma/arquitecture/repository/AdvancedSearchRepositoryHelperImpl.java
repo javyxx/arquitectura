@@ -54,7 +54,11 @@ public class AdvancedSearchRepositoryHelperImpl implements AdvancedSearchReposit
 			Integer page = getPage(parameters);
 			Integer size = getSize(parameters);
 
-			Sort sort = new Sort(processOrder(parameters));
+			List<Order> orders = processOrder(parameters);
+			Sort sort = null;
+			if(orders!= null && !orders.isEmpty()){
+				sort = new Sort(orders);
+			}
 
 			PageRequest pageRequest = new PageRequest(page, size, sort);
 
@@ -114,9 +118,9 @@ public class AdvancedSearchRepositoryHelperImpl implements AdvancedSearchReposit
 			query.with(sortQuery);
 		}
 
-		if (parameters.containsKey(AdvancedSearchRepositoryHelper.SEARCH_PARAM)) {
+		if (parameters.containsKey(AdvancedSearchRepositoryHelper.FILTER_PARAM)) {
 
-			final String[] conditions = parameters.get(AdvancedSearchRepositoryHelper.SEARCH_PARAM).toString()
+			final String[] conditions = parameters.get(AdvancedSearchRepositoryHelper.FILTER_PARAM).toString()
 					.split(AdvancedSearchRepositoryHelper.PARAM_SEPARATOR);
 			for (String condition : conditions) {
 				String[] params = condition.split(AdvancedSearchRepositoryHelper.EQUALS_PARAM + "|"
@@ -151,7 +155,7 @@ public class AdvancedSearchRepositoryHelperImpl implements AdvancedSearchReposit
 					query.addCriteria(Criteria.where(name).lt(value));
 
 				} else if (condition.contains(AdvancedSearchRepositoryHelper.LIKE_PARAM)) {
-					query.addCriteria(Criteria.where(name).regex(generatePattern(params[1])));
+					query.addCriteria(Criteria.where(name).regex(params[1]));
 
 				}
 			}
@@ -170,7 +174,7 @@ public class AdvancedSearchRepositoryHelperImpl implements AdvancedSearchReposit
 			}
 			if (type.equals(object.getClass())) {
 				if (type.equals(String.class)) {
-					return generatePattern(object.toString());
+					return object.toString();
 				}
 				return object;
 			}
@@ -186,13 +190,13 @@ public class AdvancedSearchRepositoryHelperImpl implements AdvancedSearchReposit
 
 	}
 
-	private String generatePattern(String strToSearch) {
-		String result = strToSearch.toLowerCase();
-		for (String[] replacement : AdvancedSearchRepositoryHelper.replacements) {
-			result = result.replaceAll(replacement[0], replacement[1]);
-		}
-		return result;
-	}
+//	private String generatePattern(String strToSearch) {
+//		String result = strToSearch.toLowerCase();
+//		for (String[] replacement : AdvancedSearchRepositoryHelper.replacements) {
+//			result = result.replaceAll(replacement[0], replacement[1]);
+//		}
+//		return result;
+//	}
 
 	private Integer getSize(Map<String, Object> parameters) {
 		Integer size = SIZE_DEFAULT;
