@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Javier Ledo Vázquez
  * @version 1.0
  */
-@ConfigurationProperties(locations = "classpath:arquitecture.yml", prefix = "arquitecture", ignoreUnknownFields = false)
+@ConfigurationProperties( prefix = "arquitecture", ignoreUnknownFields = false)
 public class ArquitectureProperties {
 
 	private final Security security = new Security();

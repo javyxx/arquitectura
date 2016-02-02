@@ -42,4 +42,28 @@ spring:
 logging:
    path: log
 
+# ===================================================================
+# Arquitecture specific properties
+# ===================================================================
+arquitecture:
+   security:
+      authentication:
+          accessToken:
+             secret: 9SyECk96oDsTmXfogIieDI0cD/8FpnojlYSUJT5U9I/FGVmBz5oskmjOR8cbXTvoPjX+Pq/T/b1PqpHX0lYm0oCBjXWICA==
+             storeUserInToken: false
+          oauth:
+                clientid: arquitectureapp
+                secret: mySecretOAuthSecret
+                # Token is valid 30 minutes
+                tokenValidityInSeconds: 1800
+   data:
+      mongodb:
+         host: 127.0.0.1
+         port: 27017
+         database: arquitecture
+         username: arquitectureapp
+         password: arquitectureapp
+# ===================================================================
+# End arquitecture specific properties
+# ===================================================================
 

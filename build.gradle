@@ -18,7 +18,7 @@ apply plugin: 'maven'
 
 jar {
     baseName = 'arquitecture'
-    version = '0.0.17-SNAPSHOT'
+    version = '0.0.19-SNAPSHOT'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -94,7 +94,7 @@ configure(install.repositories.mavenInstaller) {
 		groupId 'com.paradigma'
 		artifactId 'arquitecture'
 		inceptionYear '2015'
-		version  '0.0.17-SNAPSHOT'
+		version  '0.0.19-SNAPSHOT'
 		packaging 'jar'
 		licenses {
 			license {
