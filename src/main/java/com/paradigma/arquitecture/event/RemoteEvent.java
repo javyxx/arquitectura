@@ -10,14 +10,14 @@ import java.io.Serializable;
  * @param <T>
  *            the generic type
  */
-public class RemoteEvent<T> extends AbstractEvent<T>implements Serializable, SendRemote{
+public class RemoteEvent extends AbstractEvent implements Serializable, SendRemote{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4088715604882690142L;
 
-	public RemoteEvent(EventData<T> source) {
+	public RemoteEvent(String source) {
 		super(source);
 	}
 

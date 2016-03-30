@@ -21,7 +21,6 @@ import com.paradigma.arquitecture.event.AbstractEvent;
  * @author Javier Ledo Vázquez
  * @version 1.0
  */
-@SuppressWarnings("rawtypes")
 public class Commander implements ApplicationListener<AbstractEvent> {
 
 	private final Log log = LogFactory.getLog(Commander.class);
@@ -35,7 +34,7 @@ public class Commander implements ApplicationListener<AbstractEvent> {
 		this.taskScheduler = taskScheduler;
 	}
 
-	private final Map<Class<? extends ApplicationEvent>, List<EventCommand>> commands = new HashMap<>();
+	private final Map<String, List<EventCommand>> commands = new HashMap<>();
 
 	public void executeSyncCommand(AbstractCommand command) {
 		log.info("Execute command: " + command);
@@ -51,7 +50,7 @@ public class Commander implements ApplicationListener<AbstractEvent> {
 		this.taskScheduler.schedule(command, date);
 	}
 
-	public void executeCommandOnEvent(Class<? extends ApplicationEvent> event, EventCommand command) {
+	public void executeCommandOnEvent(String event, EventCommand command) {
 		if (commands.containsKey(event)) {
 			commands.get(event).add(command);
 		} else {
@@ -61,15 +60,14 @@ public class Commander implements ApplicationListener<AbstractEvent> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onApplicationEvent(AbstractEvent event) {
-		List<EventCommand> commandsList = commands.get(event.getClass());
+		List<EventCommand> commandsList = commands.get(event.getSource());
 		if (commandsList != null) {
-			for (EventCommand<?> command : commandsList) {
+			for (EventCommand command : commandsList) {
 				command.setEvent(event);
-				if (event.getSource().getMetaData().containsKey("executeAt")) {
-					Date executeAt = (Date) event.getSource().getMetaData().get("executeAt");
+				if (event.getMetaData().containsKey("executeAt")) {
+					Date executeAt = (Date) event.getMetaData().get("executeAt");
 					this.executeCommandAt(command, executeAt);
 				} else {
 					this.executeAsyncCommand(command);

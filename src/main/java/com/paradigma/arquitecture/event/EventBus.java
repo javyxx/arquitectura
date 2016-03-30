@@ -38,7 +38,7 @@ public class EventBus implements MessageListener {
 
 	public void publishEvent(ApplicationEvent event) {
 		this.publisher.publishEvent(event);
-		if (event instanceof RemoteEvent) {
+		if (event instanceof SendRemote) {
 			this.sendMessage(event);
 		}
 	}
@@ -65,7 +65,7 @@ public class EventBus implements MessageListener {
 		try {
 			ByteArrayInputStream byteIn = new ByteArrayInputStream(message.getBody());
 			ObjectInputStream in = new ObjectInputStream(byteIn);
-			AbstractEvent<?> event = (AbstractEvent<?>) in.readObject();
+			AbstractEvent event = (AbstractEvent) in.readObject();
 
 			if (!event.getApplicationId().equals(ArquitectureConfig.APPLICATION_ID) && (event instanceof SendRemote)) {
 				publishEvent(event);

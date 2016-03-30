@@ -1,5 +1,7 @@
 package com.paradigma.arquitecture.event;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.context.ApplicationEvent;
@@ -14,7 +16,7 @@ import com.paradigma.arquitecture.ArquitectureConfig;
  * @param <T>
  *            the generic type
  */
-public abstract class AbstractEvent<T> extends ApplicationEvent {
+public abstract class AbstractEvent extends ApplicationEvent {
 
 	/**
 	 * 
@@ -22,19 +24,46 @@ public abstract class AbstractEvent<T> extends ApplicationEvent {
 	private static final long serialVersionUID = 8329882167757672345L;
 
 	protected UUID applicationId = ArquitectureConfig.APPLICATION_ID;
-	protected EventData<T> source;
+	protected String eventId = this.getClass().getName();
+	public Map<String, Object> metaData = new HashMap<>();
+	public Map<String, Object> data = new HashMap<>();
 
-	public AbstractEvent(EventData<T> source) {
-		super(source);
-		this.source = source;
+
+	public AbstractEvent(String eventId) {
+		super(eventId);
 	}
 
 	public UUID getApplicationId() {
 		return applicationId;
 	}
 
-	public EventData<T> getSource() {
+	public Object getSource() {
 		return source;
 	}
+	
+	public Map<String, Object> getMetaData() {
+		return metaData;
+	}
 
+	public void setMetaData(Map<String, Object> metaData) {
+		this.metaData = metaData;
+	}
+
+	public String getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(String eventId) {
+		this.eventId = eventId;
+	}
+
+	public Map<String, Object> getData() {
+		return data;
+	}
+
+	public void setData(Map<String, Object> data) {
+		this.data = data;
+	}
+
+	
 }

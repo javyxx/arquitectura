@@ -10,19 +10,19 @@ import com.paradigma.arquitecture.event.AbstractEvent;
  * @param <T>
  *            the generic type
  */
-public abstract class EventCommand<T> extends AbstractCommand {
+public abstract class EventCommand extends AbstractCommand {
 
 	public EventCommand() {
 		super();
 	}
 
-	protected AbstractEvent<T> event;
+	protected AbstractEvent event;
 
-	public AbstractEvent<T> getEvent() {
+	public AbstractEvent getEvent() {
 		return event;
 	}
 
-	public void setEvent(AbstractEvent<T> event) {
+	public void setEvent(AbstractEvent event) {
 		this.event = event;
 	}
 

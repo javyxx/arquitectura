@@ -7,8 +7,8 @@ import com.paradigma.arquitecture.ParadigmaApplication;
 import com.paradigma.arquitecture.model.DataAccessMode;
 import com.paradigma.arquitecture.model.SecurityMode;
 
-@ParadigmaApplication(securityMode = SecurityMode.ACCESS_TOKEN, 
-					  dataAccessMode = DataAccessMode.MONGO, 
+@ParadigmaApplication(securityMode = SecurityMode.ALLOW_ALL, 
+					  dataAccessMode = DataAccessMode.IN_MEMORY, 
 					  enableAmqpConfig = true, 
 					  enableCommander = true)
 public class HelloWorldApplication {

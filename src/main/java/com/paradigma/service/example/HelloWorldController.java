@@ -54,7 +54,7 @@ public class HelloWorldController {
 
 	@RequestMapping(value = "/launchEvent", method = RequestMethod.GET)
 	public void launchEvent() {
-		commander.executeCommandOnEvent(PruebaEvent.class, new EventCommand<Object>() {
+		commander.executeCommandOnEvent(PruebaEvent.class.getName(), new EventCommand() {
 
 			@Override
 			protected void execute() {
