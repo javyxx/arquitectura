@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.TaskScheduler;
@@ -34,7 +35,7 @@ public class Commander implements ApplicationListener<AbstractEvent> {
 		this.taskScheduler = taskScheduler;
 	}
 
-	private final Map<Class<? extends AbstractEvent>, List<EventCommand>> commands = new HashMap<>();
+	private final Map<Class<? extends ApplicationEvent>, List<EventCommand>> commands = new HashMap<>();
 
 	public void executeSyncCommand(AbstractCommand command) {
 		log.info("Execute command: " + command);
@@ -50,7 +51,7 @@ public class Commander implements ApplicationListener<AbstractEvent> {
 		this.taskScheduler.schedule(command, date);
 	}
 
-	public void executeCommandOnEvent(Class<? extends AbstractEvent> event, EventCommand command) {
+	public void executeCommandOnEvent(Class<? extends ApplicationEvent> event, EventCommand command) {
 		if (commands.containsKey(event)) {
 			commands.get(event).add(command);
 		} else {

@@ -76,6 +76,10 @@ public class AccessTokenSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// Allow anonymous logins
 				.antMatchers("/auth/**").permitAll()
+				.antMatchers("/actuator", "/autoconfig", "/beans", "/configprops","/docs", "/dump", "/env", "/flyway",
+						"/health", "/info", "/liquibase", "/logfile", "/metrics", "/mappings", "/shutdown", "/trace",
+						"/refresh").permitAll()
+				
 
 		// All other request need to be authenticated
 				.anyRequest().authenticated().and()

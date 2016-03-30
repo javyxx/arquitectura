@@ -14,6 +14,7 @@ import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.core.MessagePropertiesBuilder;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 
 import com.paradigma.arquitecture.ArquitectureConfig;
@@ -35,14 +36,14 @@ public class EventBus implements MessageListener {
 		this.amqpTemplate = amqpTemplate;
 	}
 
-	public void publishEvent(AbstractEvent<?> event) {
+	public void publishEvent(ApplicationEvent event) {
 		this.publisher.publishEvent(event);
 		if (event instanceof RemoteEvent) {
 			this.sendMessage(event);
 		}
 	}
 
-	public void sendMessage(AbstractEvent<?> event) {
+	public void sendMessage(ApplicationEvent event) {
 		MessageProperties props = MessagePropertiesBuilder.newInstance()
 				.setContentType(MessageProperties.CONTENT_TYPE_SERIALIZED_OBJECT)
 				.setMessageId(new ObjectId().toString()).setExpiration(AmqpConfig.EXPIRATION_MESSAGE).build();
@@ -66,7 +67,7 @@ public class EventBus implements MessageListener {
 			ObjectInputStream in = new ObjectInputStream(byteIn);
 			AbstractEvent<?> event = (AbstractEvent<?>) in.readObject();
 
-			if (!event.getApplicationId().equals(ArquitectureConfig.APPLICATION_ID) && (event instanceof RemoteEvent)) {
+			if (!event.getApplicationId().equals(ArquitectureConfig.APPLICATION_ID) && (event instanceof SendRemote)) {
 				publishEvent(event);
 			}
 		} catch (Throwable e) {

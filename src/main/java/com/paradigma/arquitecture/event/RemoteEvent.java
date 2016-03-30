@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @param <T>
  *            the generic type
  */
-public class RemoteEvent<T> extends AbstractEvent<T>implements Serializable {
+public class RemoteEvent<T> extends AbstractEvent<T>implements Serializable, SendRemote{
 
 	/**
 	 * 
