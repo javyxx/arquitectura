@@ -44,9 +44,9 @@ public @interface ParadigmaApplication {
 
 	boolean enableWebSocket() default true;
 
-	boolean enableCommander() default false;
+	boolean enableCommander() default true;
 
-	boolean enableAmqpConfig() default false;
+	boolean enableAmqpConfig() default true;
 
 	String applicationName() default "";
 }
